@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	  <meta charset="UTF-8">
+	  <title> yuosef </title>
+	  <link rel="stylesheet" href="style.css">
+	  
+
+	  
+	  <style>
+	  .game{
+	      width: 255px;
+		  text-align: center;
+		  font-family: system-ui;
+		  color: blue;
+		  margin: auto;
+		  font-weight: 500;
+		  font-style: italic;
+		  word-spacing: 5px;
+	  }
+      .title{
+	      background: green;
+	      padding: 5px 0;
+		  margin: 5px 0;
+		  word-spacing: 19px;
+		  
+	  border-width: 4px;
+	  border-color: ffffff;
+	  border-style: double;
+	  }
+	  .title:hover{
+	  background: red;
+	  }
+	  span{
+	      color: yellow;
+		  font-size: 17pt;
+	  } 
+	  .sguare{
+	      width: 73px;
+		  height: 88px;
+		  background: red;
+		  float: left;
+		  margin: 2px;
+		  font-size: 50px;
+	  }
+	  .sguare:hover{
+	      background: black;
+		  corsor: pointer;
+	  }
+	  .sguare {
+	  border-width: 4px;
+	  border-color: yellow;
+	  border-style: dotted;
+	  }
+	  
+	 </style>
+	</head>
+	<body>
+	
+	
+        <div class="game">
+	     <div class="title"><span id="x-o">x o</span> GAME</div>
+         <div class="sguare" id="item1" onclick="game(this.id)"></div>
+	     <div class="sguare" id="item2" onclick="game(this.id)"></div>
+	     <div class="sguare" id="item3" onclick="game(this.id)"></div>
+		 
+		 <div class="sguare" id="item4" onclick="game(this.id)"></div>
+		 <div class="sguare" id="item5" onclick="game(this.id)"></div>
+		 <div class="sguare" id="item6" onclick="game(this.id)"></div>
+		 
+		 <div class="sguare" id="item7" onclick="game(this.id)"></div>
+		 <div class="sguare" id="item8" onclick="game(this.id)"></div>
+		 <div class="sguare" id="item9" onclick="game(this.id)"></div>
+		 
+		 
+	    </div>
+	    
+			 <script>
+	  let title = document.getElementById("x-o");
+	  let turn = 'o';
+	  let squares = [];
+	  function end(num1,num2,num3){
+         title.innerHTML = '${squares[num1]} winner';
+	     document.getElementById('item'+num1).style.background = '#000';
+		 document.getElementById('item'+num2).style.background = '#000';
+		 document.getElementById('item'+num3).style.background = '#000';
+		 
+		 setInterval(function(){title.innerHTML += '.'},1000);
+	     setTimeout(function(){location.reload()},6000)
+	  }	  
+	  function winnner()
+	  {
+	     for(let i = 1; i<10;i++)
+		 {
+		  squares[i] = document.getElementById('item' + i).innerHTML;
+		 }
+		 if(squares[1] == squares[2] && squares[2] == squares[3] && squares[1] != '')
+		 {
+			end(1,2,3);
+		 }		 else if(squares[4] == squares[5] && squares[5] == squares[6] && squares[5] != '')
+		 {
+		    end(4,5,6);
+		 }
+		 else if(squares[7] == squares[8] && squares[8] == squares[9] && squares[8] != '')
+		 {
+		    end(7,8,9);
+		 }
+		  
+		 else if(squares[1] == squares[4] && squares[4] == squares[7] && squares[1] != '') 
+		  {
+		      end(1,4,7)
+		  }
+		 else if(squares[2] == squares[5] && squares[5] == squares[8] && squares[5] != '')
+		 {
+		      end(2,5,8)
+		 }
+		 else if(squares[3] == squares[6] && squares[6] == squares[9] && squares[6] != '')
+		 {
+		     end(3,6,9)
+		 }
+         else if(squares[1] == squares[5] && squares[5] == squares[9] && squares[5] != '')
+		 {
+		      end(1,5,9)
+		 }
+         else if(squares[3] == squares[5] && squares[5] == squares[7] && squares[5] != '')
+		 {
+		      end(3,5,7)
+		 }
+	  }
+	  function game(id)
+	  {
+	       let element = document.getElementById(id);
+	       if(turn === 'x' && element.innerHTML == '')
+		   {
+		       element.innerHTML = 'x';
+			   turn = 'o';
+			   title.innerHTML = 'o';
+			   
+		   }
+		   else if(turn === 'o' && element.innerHTML == ''){
+		      element.innerHTML = 'o';
+			  turn = 'x';
+			  title.innerHTML = 'x';
+		   }
+		   winnner();
+	  }
+	  
+	  
+	  </script>
+
+	</body>
+</html>
